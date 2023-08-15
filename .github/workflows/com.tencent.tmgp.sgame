@@ -1,0 +1,27 @@
+名字: 建筑
+在:
+  workflow_dispatch:
+输入:
+        package_name:
+描述: “游戏包名称：”
+所需: 真正的
+
+工作:
+建筑:
+    runs-on: ubuntu-latest
+步骤:
+    - 用途: actions/checkout@v3
+    - 用途: actions/setup-java@v3
+与:
+分布: 铁木林
+        java-version: 11
+贮存物: 格拉
+    - 跑: |
+chmod + x．／gradlew
+sed－i ' s／moduleDescription =＂／moduleDescription =＂（$ { { github．event．inputs．package _ name }）／g ' module．gradle
+sed－i＂s／com．game．packagename／$ { { github．event．inputs．package _ name } }／g＂module／src／main／cpp／game．h
+／gradlew：模块：assembleRelease
+    - 用途: actions/upload-artifact@v3
+与:
+名字: zygisk-il2cppdumper
+路径: out/magisk_module_release/
